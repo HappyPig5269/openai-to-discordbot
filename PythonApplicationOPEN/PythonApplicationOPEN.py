@@ -1,18 +1,21 @@
+#導入open ai 及 discord
 ﻿import discord
 import openai
 from discord.ext import commands
 
+#輸入你的API KEY
 openai.api_key = "your open ai api key"
 model_engine = "text-davinci-003"
 
 
 bot = commands.Bot(command_prefix="!")
 
+#機器人上線時的輸出文字（在終端機）
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} has connected to Discord!")
 
-
+#機器人的條件跟客製化內容
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -31,4 +34,5 @@ async def on_message(message):
     
         await message.channel.send(response.choices[0].text)
 
+#輸入你的DISCORD BOT的TOKEN
 bot.run("your discord bot token")
